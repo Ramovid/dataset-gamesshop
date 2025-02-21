@@ -1,0 +1,30 @@
+Análise de Inventário e Logística
+
+import pandas as pd
+
+# Dados fictícios de inventário por centro de distribuição
+data = {
+    'Centro de Distribuição': ['CD1', 'CD2', 'CD3'],
+    'Estoques RG35XX': [200, 150, 180],
+    'Estoques RG 40XXV': [180, 160, 200],
+    'Estoques RG28XX': [210, 180, 190],
+    'Custo Logístico': [500, 600, 550]  # Custo para transportar até os pontos de venda
+}
+
+df = pd.DataFrame(data)
+
+# Analisando o estoque total por tipo de console
+df['Total RG35XX'] = df['Estoques RG35XX'].sum()
+df['Total RG 40XXV'] = df['Estoques RG 40XXV'].sum()
+df['Total RG28XX'] = df['Estoques RG28XX'].sum()
+
+# Sugestão para redução de custos logísticos
+# Verificando os centros de distribuição com maiores custos logísticos
+centro_mais_caro = df.loc[df['Custo Logístico'].idxmax()]
+
+# Exibindo os resultados
+print("Totais de Estoque por Console:")
+print(f"RG35XX: {df['Total RG35XX'][0]}")
+print(f"RG 40XXV: {df['Total RG 40XXV'][0]}")
+print(f"RG28XX: {df['Total RG28XX'][0]}")
+print(f"\nCentro de Distribuição com Maior Custo Logístico: {centro_mais_caro['Centro de Distribuição']}")
